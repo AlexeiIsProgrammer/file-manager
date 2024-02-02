@@ -3,15 +3,14 @@ import { currentPath } from '../index.js';
 import __relative from '../modules/__relative.js';
 import { promises as fs } from 'fs';
 
-export default async function rename(filename, newFilename) {
+export default async function remove(filename) {
     const filepath = __relative(`${process.cwd()}${currentPath.path}`, filename);
-    const newFilepath = __relative(`${process.cwd()}${currentPath.path}`, newFilename);
 
     try {
         const stats = await fs.stat(filepath)
 
         if (stats.isFile()) {
-            await fs.rename(filepath, newFilepath)
+            await fs.unlink(filepath)
         } else {
             console.log('That\'s not a file!');
         }

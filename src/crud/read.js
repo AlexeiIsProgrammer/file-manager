@@ -10,7 +10,7 @@ export default async function read(filename) {
         const stats = await fsPromises.stat(filepath)
 
         if (stats.isFile()) {
-            return new Promise((resolve) => {
+            await new Promise((resolve) => {
                 const stream = fs.createReadStream(filepath);
 
                 let content = '';
