@@ -8,9 +8,6 @@ export default async function copy(filename, directoryName) {
     const filepath = __relative(`${process.cwd()}${currentPath.path}`, filename);
     const directoryPath = __relative(`${process.cwd()}${currentPath.path}`, `${directoryName}/${filename}`);
 
-    console.log(filepath);
-    console.log(directoryPath);
-
     try {
         const readStream = fs.createReadStream(filepath);
         const writeStream = fs.createWriteStream(directoryPath);

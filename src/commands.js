@@ -1,3 +1,5 @@
+import compress from "./archive/compress.js";
+import decompress from "./archive/decompress.js";
 import copy from "./crud/copy.js";
 import create from "./crud/create.js";
 import move from "./crud/move.js";
@@ -29,6 +31,10 @@ export default async function checkInput(userInput) {
         await copy(userInput.split(' ')[1], userInput.split(' ')[2]);
     } else if (userInput.startsWith('mv')) {
         await move(userInput.split(' ')[1], userInput.split(' ')[2]);
+    } else if (userInput.startsWith('compress')) {
+        await compress(userInput.split(' ')[1], userInput.split(' ')[2]);
+    } else if (userInput.startsWith('decompress')) {
+        await decompress(userInput.split(' ')[1], userInput.split(' ')[2]);
     } else if (userInput.startsWith('os')) {
         osCommands(userInput.split(' ')[1]);
     } else if (userInput.startsWith('hash')) {
