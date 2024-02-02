@@ -8,7 +8,7 @@ export default async function checkInput(userInput) {
     } else if (userInput === 'up') {
         up()
     } else if (userInput === 'ls') {
-        ls()
+        await ls()
     } else {
         console.log('Invalid input');
     }
