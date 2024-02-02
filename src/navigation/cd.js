@@ -43,10 +43,11 @@ export default async function cd(pathname) {
                     break
                 }
             } else if (pathArr[i] !== '.' && pathArr[i] !== '') {
-                const finalPath = __relative(process.cwd(), currentPath.path)
+                const finalPath = __relative(process.cwd(), `${currentPath.path}/${pathArr[i]}`)
+                console.log('finalPath', finalPath);
                 const folderPath = await getFolder(finalPath)
                 if (folderPath) {
-                    currentPath.path = `/${pathArr[i]}`
+                    currentPath.path += `/${pathArr[i]}`
                 }
             }
         }

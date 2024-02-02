@@ -21,12 +21,12 @@ async function start() {
         }
 
         function promptUser() {
-            rl.question(`You are currently in ${initialPath}${currentPath.path.split('/').join('\\')} \n`, (userInput) => {
+            rl.question(`You are currently in ${initialPath}${currentPath.path.split('/').join('\\')} \n`, async (userInput) => {
                 if (userInput.toLowerCase() === '.exit') {
                     console.log(`Thank you for using File Manager, ${name === '--username' ? value : 'Bad user'}, goodbye!`);
                     rl.close();
                 } else {
-                    checkInput(userInput)
+                    await checkInput(userInput)
                     promptUser();
                 }
             });
