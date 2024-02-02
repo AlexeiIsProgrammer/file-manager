@@ -7,6 +7,7 @@ import rename from "./crud/rename.js";
 import cd from "./navigation/cd.js";
 import ls from "./navigation/ls.js";
 import up from "./navigation/up.js";
+import osCommands from "./os/osCommands.js";
 
 export default async function checkInput(userInput) {
     if (userInput.startsWith('cd')) {
@@ -27,6 +28,8 @@ export default async function checkInput(userInput) {
         await copy(userInput.split(' ')[1], userInput.split(' ')[2]);
     } else if (userInput.startsWith('mv')) {
         await move(userInput.split(' ')[1], userInput.split(' ')[2]);
+    } else if (userInput.startsWith('os')) {
+        await osCommands(userInput.split(' ')[1]);
     } else {
         console.log('Invalid input');
     }
