@@ -3,8 +3,8 @@ import __relative from '../modules/__relative.js';
 import fs, { promises as fsPromises } from 'fs';
 
 export default async function move(filename, directoryName) {
-    const filepath = __relative(`${process.cwd()}${currentPath.path}`, filename);
-    const directoryPath = __relative(`${process.cwd()}${currentPath.path}`, `${directoryName}/${filename}`);
+    const filepath = __relative(`${currentPath.path}`, filename);
+    const directoryPath = __relative(`${currentPath.path}`, `${directoryName}/${filename}`);
 
 
     try {

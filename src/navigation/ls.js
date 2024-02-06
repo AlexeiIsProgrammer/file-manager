@@ -24,6 +24,6 @@ async function printFiles(source) {
 }
 
 export default async function ls() {
-    const filesPath = __relative(process.cwd(), currentPath.path);
+    const filesPath = __relative(currentPath.path);
     printFiles(filesPath)
 };

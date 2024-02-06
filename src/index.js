@@ -2,8 +2,8 @@ import readline from 'readline';
 import os from 'os';
 import checkInput from './commands.js';
 
-const initialPath = os.homedir();
-export const currentPath = { path: '' };
+export const initialPath = os.homedir();
+export const currentPath = { path: initialPath };
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -21,7 +21,7 @@ async function start() {
         }
 
         function promptUser() {
-            rl.question(`You are currently in ${initialPath}${currentPath.path.split('/').join('\\')} \n`, async (userInput) => {
+            rl.question(`You are currently in ${currentPath.path.split('/').join('\\')} \n`, async (userInput) => {
                 if (userInput.toLowerCase() === '.exit') {
                     console.log(`Thank you for using File Manager, ${name === '--username' ? value : 'Bad user'}, goodbye!`);
                     rl.close();

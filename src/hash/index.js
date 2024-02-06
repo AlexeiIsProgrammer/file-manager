@@ -4,7 +4,7 @@ import fs, { promises as fsPromises } from 'fs';
 import crypto from 'crypto'
 
 export default async function hash(filename) {
-    const filepath = __relative(`${process.cwd()}${currentPath.path}`, filename);
+    const filepath = __relative(`${currentPath.path}`, filename);
     const hash = crypto.createHash('sha256');
 
     try {
