@@ -1,14 +1,15 @@
-
-import { resolve } from 'path';
 import { currentPath } from '../index.js';
 import __relative from '../modules/__relative.js';
-import fs from 'fs';
+import fs, { promises as fsPromises } from 'fs';
 
 export default async function copy(filename, directoryName) {
     const filepath = __relative(`${process.cwd()}${currentPath.path}`, filename);
+    const directoryCheckPath = __relative(`${process.cwd()}${currentPath.path}`, directoryName);
     const directoryPath = __relative(`${process.cwd()}${currentPath.path}`, `${directoryName}/${filename}`);
-
     try {
+        await fsPromises.stat(filepath)
+        await fsPromises.stat(directoryCheckPath)
+
         const readStream = fs.createReadStream(filepath);
         const writeStream = fs.createWriteStream(directoryPath);
 
