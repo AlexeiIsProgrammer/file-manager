@@ -1,5 +1,5 @@
 import path from 'path';
 
-const __relative = (relativePath, pathname) => path.join(relativePath, pathname || '');
+const __relative = (...args) => path.resolve(...args);
 
 export default __relative;

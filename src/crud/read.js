@@ -4,7 +4,7 @@ import __relative from '../modules/__relative.js';
 import fs, { promises as fsPromises } from 'fs';
 
 export default async function read(filename) {
-    const filepath = __relative(`${currentPath.path}`, filename);
+    const filepath = __relative(currentPath.path, filename);
 
     try {
         const stats = await fsPromises.stat(filepath)

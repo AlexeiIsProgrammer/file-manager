@@ -21,7 +21,7 @@ async function start() {
         }
 
         function promptUser() {
-            rl.question(`You are currently in ${currentPath.path.split('/').join('\\')} \n`, async (userInput) => {
+            rl.question(`You are currently in ${currentPath.path} \n`, async (userInput) => {
                 if (userInput.toLowerCase() === '.exit') {
                     console.log(`Thank you for using File Manager, ${name === '--username' ? value : 'Bad user'}, goodbye!`);
                     rl.close();
