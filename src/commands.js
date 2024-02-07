@@ -13,32 +13,44 @@ import up from "./navigation/up.js";
 import osCommands from "./os/osCommands.js";
 
 export default async function checkInput(userInput) {
-    if (userInput.startsWith('cd')) {
-        await cd(userInput.split(' ')[1]);
-    } else if (userInput === 'up') {
+    const regex = /^(\w+)(?:\s+((?:['"][^'"]+['"])|(?:\S+))?(?:\s+((?:['"][^'"]+['"])|(?:\S+))?)?)?$/;
+    const matches = userInput.match(regex);
+
+    if (!matches) {
+        console.log('Invalid Input');
+        return
+    }
+
+    const command = matches[1]
+    const firstArg = matches[2] ? matches[2].replace(/['"]/g, '') : null; // First filename is optional
+    const secondArg = matches[3] ? matches[3].replace(/['"]/g, '') : null; // Second filename is optional
+
+    if (command === 'cd') {
+        await cd(firstArg);
+    } else if (command === 'up') {
         up();
-    } else if (userInput === 'ls') {
+    } else if (command === 'ls') {
         await ls();
-    } else if (userInput.startsWith('cat')) {
-        await read(userInput.split(' ')[1]);
-    } else if (userInput.startsWith('rn')) {
-        await rename(userInput.split(' ')[1], userInput.split(' ')[2]);
-    } else if (userInput.startsWith('add')) {
-        await create(userInput.split(' ')[1]);
-    } else if (userInput.startsWith('rm')) {
-        await remove(userInput.split(' ')[1]);
-    } else if (userInput.startsWith('cp')) {
-        await copy(userInput.split(' ')[1], userInput.split(' ')[2]);
-    } else if (userInput.startsWith('mv')) {
-        await move(userInput.split(' ')[1], userInput.split(' ')[2]);
-    } else if (userInput.startsWith('compress')) {
-        await compress(userInput.split(' ')[1], userInput.split(' ')[2]);
-    } else if (userInput.startsWith('decompress')) {
-        await decompress(userInput.split(' ')[1], userInput.split(' ')[2]);
-    } else if (userInput.startsWith('os')) {
-        osCommands(userInput.split(' ')[1]);
-    } else if (userInput.startsWith('hash')) {
-        await hash(userInput.split(' ')[1]);
+    } else if (command === 'cat') {
+        await read(firstArg);
+    } else if (command === 'rn') {
+        await rename(firstArg, secondArg);
+    } else if (command === 'add') {
+        await create(firstArg);
+    } else if (command === 'rm') {
+        await remove(firstArg);
+    } else if (command === 'cp') {
+        await copy(firstArg, secondArg);
+    } else if (command === 'mv') {
+        await move(firstArg, secondArg);
+    } else if (command === 'compress') {
+        await compress(firstArg, secondArg);
+    } else if (command === 'decompress') {
+        await decompress(firstArg, secondArg);
+    } else if (command === 'os') {
+        osCommands(firstArg);
+    } else if (command === 'hash') {
+        await hash(firstArg);
     } else {
         console.log('Invalid input');
     }
