@@ -3,10 +3,12 @@ import __relative from '../modules/__relative.js';
 import fs, { promises as fsPromises } from 'fs';
 
 export default async function copy(filename, directoryName) {
-    const filepath = __relative(currentPath.path, filename);
-    const directoryCheckPath = __relative(currentPath.path, directoryName);
-    const directoryPath = __relative(currentPath.path, directoryName, filename);
+
     try {
+        const filepath = __relative(currentPath.path, filename);
+        const directoryCheckPath = __relative(currentPath.path, directoryName);
+        const directoryPath = __relative(currentPath.path, directoryName, filename);
+
         await fsPromises.stat(filepath)
         await fsPromises.stat(directoryCheckPath)
 
@@ -15,7 +17,6 @@ export default async function copy(filename, directoryName) {
 
         await new Promise((resolve, reject) => {
             readStream.pipe(writeStream);
-
             writeStream.on('finish', resolve);
             writeStream.on('error', reject);
         });
