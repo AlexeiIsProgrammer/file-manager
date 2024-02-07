@@ -17,6 +17,8 @@ async function printFiles(source) {
             }
         }
 
+        data.sort((a, b) => a.Name.localeCompare(b.Name) && a.Type.localeCompare(b.Type))
+
         console.table(data)
     } catch (error) {
         console.log('You have an error: ', error.message);
