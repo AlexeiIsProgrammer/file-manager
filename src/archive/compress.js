@@ -4,10 +4,10 @@ import fs, { promises as fsPromises } from 'fs';
 import zlib from 'zlib'
 
 export default async function compress(filename, archivename) {
-    const filepath = __relative(currentPath.path, filename);
-    const archivepath = __relative(currentPath.path, archivename);
 
     try {
+        const filepath = __relative(currentPath.path, filename);
+        const archivepath = __relative(currentPath.path, archivename);
         const stats = await fsPromises.stat(filepath)
 
         if (stats.isFile()) {

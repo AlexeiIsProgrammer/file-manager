@@ -2,7 +2,6 @@ import { currentPath, initialPath } from "../index.js";
 import path from 'path'
 
 export default function up() {
-    console.log(currentPath.path, initialPath);
     if (currentPath.path === initialPath) {
         console.log('You already in the most upper directory you can be');
     } else {

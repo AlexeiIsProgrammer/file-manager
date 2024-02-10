@@ -4,9 +4,9 @@ import __relative from '../modules/__relative.js';
 import { promises as fs } from 'fs';
 
 export default async function remove(filename) {
-    const filepath = __relative(currentPath.path, filename);
 
     try {
+        const filepath = __relative(currentPath.path, filename);
         const stats = await fs.stat(filepath)
 
         if (stats.isFile()) {
