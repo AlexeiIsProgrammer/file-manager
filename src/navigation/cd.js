@@ -22,16 +22,15 @@ const getFolder = async (pathname) => {
 export default async function cd(pathname) {
 
     const newPath = path.resolve(currentPath.path, pathname);
-
     if (!(await stat(newPath)).isDirectory()) {
         console.log('Wrong directory');
         return
     }
 
-    if (currentPath.path !== initialPath) {
-        currentPath.path = newPath
-    } else {
+    if (initialPath.includes(newPath) && initialPath.length > newPath.length) {
         console.log('You\'re trying to reach out of your initial directory!');
+    } else {
+        currentPath.path = newPath
     }
 
 }
